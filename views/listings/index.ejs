@@ -1,0 +1,136 @@
+<%- layout("layouts/boilerplate") %>  
+<body>
+    
+    <style>
+        #filters{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .filter{
+            text-align: center;
+            margin-top: 1rem;
+            margin-right: 2rem;
+            opacity: 0.8;
+        }
+        .filter p{
+            font-size: 0.8rem;
+        }
+        .filter:hover{
+            opacity: 1;
+            cursor: pointer;
+        }
+        .licon {
+            font-size: 1.5em;
+        }
+        .tax-info{
+            display: none;
+        }
+        .text-toggle{
+            display: flex;
+            border: 1px solid  black;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            height: 2.7em;
+            align-items: center;
+            
+        }
+        .text-toggle:hover{
+            background-color: rgb(222, 224, 228);
+        }
+        
+        
+    </style>
+
+    <div id="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire licon"></i></div>
+            <p>Trending</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-bed licon"></i></div>
+            <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city licon"></i></div>
+            <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain licon"></i></div>
+            <p>Mountains</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-brands fa-fort-awesome licon"></i></div>
+            <p>Castles</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-swimming licon"></i></div>
+            <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-campground licon"></i></div>
+            <p>Camping</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-cow licon"></i></div>
+            <p>Farms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-snowman licon"></i></div>
+            <p>Arctic</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-tree licon"></i></div>
+            <p>Treehouses</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-igloo licon"></i></div>
+            <p>Domes</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-umbrella-beach licon"></i></div>
+            <p>Islands</p>
+        </div>
+        <div class="text-toggle ms-auto">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" style="font-size: 14px;">Display price after taxes</label>
+              </div>
+        </div>
+    </div>
+    
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+        <% for( let listing of allListings) { %>
+
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+            <div class="card col card-listing" >
+                <img src="<%=listing.image.url %>" class="card-img-top" alt="listing_img">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><h5 class="card-title"><%= listing.title %></h5></b>
+                        &#x20B9;<%= listing.price.toLocaleString("en-IN") %> /night
+                        &nbsp;&nbsp;<i class="tax-info">+18% tax</i>
+                    </p> 
+                </div>
+                
+            </div>
+            </a>
+        <% } %>
+    </div>
+
+</body>
+
+<script>
+    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+    taxSwitch.addEventListener("click",()=>{
+        let taxInfo = document.getElementsByClassName("tax-info");
+        for(info of taxInfo){
+            if (info.style.display != "inline") {
+                info.style.display = "inline";
+            }else{
+                info.style.display = "none";
+            }
+        }
+    });
+</script>

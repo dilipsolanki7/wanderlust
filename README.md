@@ -1,0 +1,1 @@
+A web application for creating, managing, and showcasing property listings, similar to Airbnb. Users can add new listings, edit existing ones, and delete them as needed. The application features a user-friendly form for creating new listings, with fields for title, description, image URL, price, country, and location.
